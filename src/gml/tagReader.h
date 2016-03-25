@@ -26,7 +26,6 @@ public:
         vector<ofColor> colors;
         vector<brush> brushes;
         vector<ofPolyline> strokes;
-        deque<float> stops;
         float startTime;
         float endTime;
         float offsetX;
@@ -40,9 +39,15 @@ public:
     void setup(float x, float y, float width, float height);
     void loadFile(string path);
     void clear();
+    void getBoundingBox(vector<ofPolyline>& lines, ofVec3f& cornerMin, ofVec3f& cornerMax);
+    void centerAndNormalize(vector<ofPolyline>& lines, ofVec3f cornerMin, ofVec3f cornerMax);
+    void centerAndNormalize(vector<ofPolyline>& lines);
     
-    
-    vector<playbackTag> tags;
+    void getBoundingBox(ofPolyline& line, ofVec3f& cornerMin, ofVec3f& cornerMax);
+    void centerAndNormalize(ofPolyline& line, ofVec3f cornerMin, ofVec3f cornerMax);
+    void centerAndNormalize(ofPolyline& line);
+    void scale(ofPolyline& line, float scaleX, float scaleY);
+    playbackTag tag;
 protected:
     int count;
     float zeroX;
