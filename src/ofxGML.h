@@ -1,7 +1,7 @@
 #pragma once
 #include "ofMain.h"
 #include "tagReader.h"
-#include "tagWritter.h"
+#include "tagWriter.h"
 
 class ofxGML{
 public:
@@ -17,5 +17,5 @@ public:
         
     };
     tagReader gmlReader;
-    tagWritter gmlWriter;
+    tagWriter gmlWriter;
 };
