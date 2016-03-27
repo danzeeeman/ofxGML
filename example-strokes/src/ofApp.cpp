@@ -60,5 +60,7 @@ void ofApp::loadGML(){
             strokes.pop_front();
             strokeIndex = 0;
         }
+    }else{
+          ofExit();
     }
 }
