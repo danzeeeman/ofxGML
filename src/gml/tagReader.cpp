@@ -160,6 +160,11 @@ void tagReader::centerAndNormalize(ofPolyline& line, ofVec3f cornerMin, ofVec3f 
     }
     
 }
+void tagReader::scale(vector<ofPolyline>& lines, float scaleX, float scaleY){
+    for(int j = 0; j < lines.size(); j++){
+        scale(lines[j], scaleX, scaleY);
+    }
+}
 void tagReader::scale(ofPolyline& line, float scaleX, float scaleY){
     vector<ofVec3f>& vertices = line.getVertices();
     for(int i = 0; i < vertices.size(); i++) {

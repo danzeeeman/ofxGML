@@ -47,6 +47,7 @@ public:
     void centerAndNormalize(ofPolyline& line, ofVec3f cornerMin, ofVec3f cornerMax);
     void centerAndNormalize(ofPolyline& line);
     void scale(ofPolyline& line, float scaleX, float scaleY);
+    void scale(vector<ofPolyline>& line, float scaleX, float scaleY);
     playbackTag tag;
 protected:
     int count;
