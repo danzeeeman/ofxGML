@@ -1,3 +1,5 @@
+![TSNE Grid of 100000 GML Strokes](art/tsne_grid_gml.png)
+
 # ofxGML
 Graffiti Markup Language Addon for Reading and Writing GML files  
 
