@@ -55,5 +55,7 @@ void ofApp::loadGML(){
         gmlReader.centerAndNormalize(lines);
         gmlReader.scale(lines, 250, 250);
         currentTag = lines;
+    }else{
+        ofExit();
     }
 }
