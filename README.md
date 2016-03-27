@@ -28,3 +28,6 @@ WIP
 ### gmlVJ & tagCaptureSimple
 
 VJing tool from my performance with [Liars at the Metropolitan Museum of Art](http://makeitdoathing.com/index.php/2013---liars-/).  It was adapted from Theo Watson et.al. LaserTag 2.0 codebase. 
+
+![Liars@theMet](art/Liars@theMet-46.jpg)
+![Liars@theMet VINE](art/23b50dce-f4bd-420f-b3f0-3bf948bf5363.mp4)
