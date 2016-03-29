@@ -26,6 +26,9 @@ void tagWriter::setup(){
     tagIndex = 0;
 }
 
+void tagWriter::reset(){
+    
+}
 
 //
 // This sets up the gml file with a dummy header for now
@@ -35,7 +38,7 @@ void tagWriter::setup(){
 
 void tagWriter::setupGML(){
     
-    fileName = "session-"+ofToString(ofGetDay())+"-"+ofToString(ofGetHours())+"-"+ofToString(ofGetMinutes())+"-"+ofToString(ofGetSeconds())+".xml";
+    fileName = "session-"+ofToString(ofGetDay())+"-"+ofToString(ofGetHours())+"-"+ofToString(ofGetMinutes())+"-"+ofToString(ofGetSeconds())+".gml";
     gml.loadFile(fileName);
     gml.addTag("gml");
     gml.pushTag("gml");
@@ -95,7 +98,7 @@ void tagWriter::addPoint(float x, float y){
         gml.pushTag("pt", tagNum);
 		gml.setValue("x", x, tagNum);
 		gml.setValue("y", y, tagNum);
-        gml.setValue("time", ofGetElapsedTimef()-tagTimeStart, tagNum);
+        gml.setValue("t", ofGetElapsedTimef()-tagTimeStart, tagNum);
 		gml.popTag();
         gml.popTag();
 	}

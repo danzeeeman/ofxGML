@@ -24,6 +24,7 @@ public:
     void setBrush(int num, ofColor c, int size);
     void screenClear();
     string getFileName();
+    void reset();
 protected:
     
     bool useLength;

@@ -9,6 +9,8 @@
 #include "tagReader.h"
 
 tagReader::tagReader(){
+    maxY = maxX = 1;
+    zeroX = zeroY = 0;
     
 }
 
@@ -23,7 +25,9 @@ void tagReader::setup(float x, float y, float width, float height){
 }
 
 void tagReader::loadFile(string path){
-    clear();
+    tag.strokes.clear();
+    tag.brushes.clear();
+    tag.colors.clear();
     tag.name = path;
     tag.offsetY = 0;
     tag.offsetX = 0;
@@ -52,8 +56,8 @@ void tagReader::loadFile(string path){
             if(foo.tagExists("drawing")){
                 foo.pushTag("drawing");
                 
-                count = foo.getNumTags("stroke");
-                for(int i = 0; i < foo.getNumTags("stroke"); i++){
+                strokeCount = foo.getNumTags("stroke");
+                for(int i = 0; i < strokeCount; i++){
                     foo.pushTag("stroke", i);
                     cout<<"STROKE: "<<i<<endl;
                     ofPolyline line;
@@ -61,11 +65,22 @@ void tagReader::loadFile(string path){
                     for(int j = 0; j < numPtTags; j++){
                         double x = foo.getValue("pt:x", 0.0, j)*maxX;
                         double y = foo.getValue("pt:y", 0.0, j)*maxY*tag.screenY/tag.screenX;
-                        line.addVertex(ofPoint(x, y, 0));
+                        double t = foo.getValue("pt:t", 0.0, j);
+                        line.addVertex(ofPoint(x, y, t));
+                        if(j == 0){
+                            tag.strokeStartTime.push_back(t);
+                        }
+                        if(j == numPtTags-1){
+                            tag.strokeEndTime.push_back(t);
+                            tag.strokeDuration.push_back(t - tag.strokeStartTime.back());
+                        }
                     }
                     tag.strokes.push_back(line);
                     foo.popTag();
                 }
+                tag.startTime = 0;
+                tag.duration = tag.endTime;
+                tags.push_back(tag);
             }else{
                 cout<<"cannot load file 1"<<endl;
             }
@@ -80,9 +95,8 @@ void tagReader::loadFile(string path){
 }
 
 void tagReader::clear(){
-    tag.strokes.clear();
-    tag.brushes.clear();
-    tag.colors.clear();
+
+    tags.clear();
 }
 
 void tagReader::getBoundingBox(vector<ofPolyline>& lines, ofVec3f& cornerMin, ofVec3f& cornerMax) {

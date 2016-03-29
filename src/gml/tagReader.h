@@ -26,8 +26,12 @@ public:
         vector<ofColor> colors;
         vector<brush> brushes;
         vector<ofPolyline> strokes;
+        vector<float> strokeDuration;
+        vector<float> strokeStartTime;
+        vector<float> strokeEndTime;;
         float startTime;
         float endTime;
+        float duration;
         float offsetX;
         float offsetY;
         float screenX;
@@ -49,8 +53,9 @@ public:
     void scale(ofPolyline& line, float scaleX, float scaleY);
     void scale(vector<ofPolyline>& line, float scaleX, float scaleY);
     playbackTag tag;
+    vector<playbackTag> tags;
 protected:
-    int count;
+    int strokeCount;
     float zeroX;
     float zeroY;
     float maxX;
