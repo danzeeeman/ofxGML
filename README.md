@@ -8,7 +8,7 @@ Graffiti Markup Language Addon for Reading and Writing GML files
 
 ### examples-strokes && examples-tags
 
-These examples were written to extract GML strokes and tags into individual images 128by128 images.  They are centered, normalized, and scaled to fit within the texture.  The output is saved to a file for futher analysis.
+These examples were written to extract GML strokes and tags into individual images.  They are centered, normalized, and scaled to fit within the texture.  The output is saved to a file for futher analysis.
 
 External Addons needed for this example:
 - ofxGML (this addon)
