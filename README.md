@@ -1,6 +1,7 @@
-![TSNE Grid of 100000 GML Strokes](art/tsne_grid_gml.png)
-
 # ofxGML
+![TSNE Grid of 100000 GML Strokes](art/tsne_grid_gml.png)
+TSNE Grid of 100x100 Strokes from [000000Book](http://000000book.com/) created with [ofxTSNE](https://github.com/genekogan/ofxTSNE) and [ofxCcv](https://github.com/kylemcdonald/ofxCcv)
+
 Graffiti Markup Language Addon for Reading and Writing GML files  
 
 ##Apps
