@@ -51,8 +51,8 @@ void tagWriter::setupGML(){
     gml.pushTag("client");
     gml.addValue("name", "metTag");
     gml.addValue("version", 1.0);
-    gml.addValue("username", "beta-user");
-    gml.addValue("keywords","met,metTag,temple");
+    gml.addValue("username", "FILL THIS IN");
+    gml.addValue("keywords","ofxGML");
     gml.popTag();//</client>
     gml.popTag();//</header>
     
@@ -80,18 +80,47 @@ void tagWriter::setupGML(){
     gml.addValue("z", 0);
     gml.popTag();//</screenBounds>
     gml.popTag();//</envrionment>
-    tagTimeStart = ofGetElapsedTimef();
     gml.saveFile(fileName);
     numSteps = 500;
     tagStart = false;
     brushCount = 0;
-    
+    tagTimeStart = ofGetElapsedTimef();
+}
+
+void tagWriter::startCapture(){
+    tagTimeStart = ofGetElapsedTimef();
+
+}
+
+void tagWriter::addPoint(ofVec3f pt){
+    float t = ofGetElapsedTimef() - tagTimeStart;
+    if( gml.pushTag("stroke", lastTagNumber) ){
+        int tagNum = gml.addTag("pt");
+        gml.pushTag("pt", tagNum);
+        gml.setValue("x", pt.x, tagNum);
+        gml.setValue("y", pt.y, tagNum);
+        gml.setValue("z", pt.z, tagNum);
+        gml.setValue("t", ofGetElapsedTimef()-tagTimeStart, tagNum);
+        gml.popTag();
+        gml.popTag();
+    }
+}
+
+void tagWriter::addPoint(float x, float y, float z){
+    float t = abs(tagTimeStart-ofGetElapsedTimef());
+    if( gml.pushTag("stroke", lastTagNumber) ){
+        int tagNum = gml.addTag("pt");
+        gml.pushTag("pt", tagNum);
+        gml.setValue("x", x, tagNum);
+        gml.setValue("y", y, tagNum);
+        gml.setValue("z", z, tagNum);
+        gml.setValue("t", ofGetElapsedTimef()-tagTimeStart, tagNum);
+        gml.popTag();
+        gml.popTag();
+    }
 }
 
 void tagWriter::addPoint(float x, float y){
-    ofVec2f p;
-    p.x = x;
-    p.y = y;
     float t = abs(tagTimeStart-ofGetElapsedTimef());
     if( gml.pushTag("stroke", lastTagNumber) ){
 		int tagNum = gml.addTag("pt");

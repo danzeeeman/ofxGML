@@ -4,7 +4,7 @@
 void ofApp::setup(){
     ofSetFrameRate(60);
     ofSetVerticalSync(true);
-    fbo.allocate(256, 256, GL_RGBA);
+    fbo.allocate(128, 128, GL_RGBA);
     fbo.begin();
     ofClear(0, 0, 0, 0);
     fbo.end();
@@ -12,7 +12,8 @@ void ofApp::setup(){
     dir.allowExt(".gml");
     tagIndex = 0;
     strokeIndex = 0;
-    gmlReader.setup(0, 0, 256, 256);
+    gmlReader.setup(0, 0, 1, 1);
+    gmlReader.useTime(false);
     loadGML();
 }
 
@@ -53,7 +54,7 @@ void ofApp::loadGML(){
         gmlReader.loadFile(dir.getPath(tagIndex));
         vector<ofPolyline> lines = gmlReader.tag.strokes;
         gmlReader.centerAndNormalize(lines);
-        gmlReader.scale(lines, 250, 250);
+        gmlReader.scale(lines, 100, 100);
         currentTag = lines;
     }else{
         ofExit();

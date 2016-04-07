@@ -22,6 +22,11 @@ void tagReader::setup(float x, float y, float width, float height){
     zeroY = y;
     maxX = width;
     maxY = height;
+    bUseTime = false;
+}
+
+void tagReader::useTime(bool bUseTime_){
+    bUseTime = bUseTime_;
 }
 
 void tagReader::loadFile(string path){
@@ -65,12 +70,12 @@ void tagReader::loadFile(string path){
                     for(int j = 0; j < numPtTags; j++){
                         double x = foo.getValue("pt:x", 0.0, j)*maxX;
                         double y = foo.getValue("pt:y", 0.0, j)*maxY*tag.screenY/tag.screenX;
-                        double t = foo.getValue("pt:t", 0.0, j);
+                        double t = bUseTime?foo.getValue("pt:t", 0.0, j):0;
                         line.addVertex(ofPoint(x, y, t));
-                        if(j == 0){
+                        if(j == 0 && bUseTime){
                             tag.strokeStartTime.push_back(t);
                         }
-                        if(j == numPtTags-1){
+                        if(j == numPtTags-1 && bUseTime){
                             tag.strokeEndTime.push_back(t);
                             tag.strokeDuration.push_back(t - tag.strokeStartTime.back());
                         }
@@ -78,8 +83,10 @@ void tagReader::loadFile(string path){
                     tag.strokes.push_back(line);
                     foo.popTag();
                 }
-                tag.startTime = 0;
-                tag.duration = tag.endTime;
+                if(bUseTime){
+                    tag.startTime = 0;
+                    tag.duration = tag.endTime;
+                }
                 tags.push_back(tag);
             }else{
                 cout<<"cannot load file 1"<<endl;

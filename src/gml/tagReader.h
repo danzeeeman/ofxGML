@@ -43,6 +43,8 @@ public:
     void setup(float x, float y, float width, float height);
     void loadFile(string path);
     void clear();
+    void useTime(bool bUseTime_);
+    
     void getBoundingBox(vector<ofPolyline>& lines, ofVec3f& cornerMin, ofVec3f& cornerMax);
     void centerAndNormalize(vector<ofPolyline>& lines, ofVec3f cornerMin, ofVec3f cornerMax);
     void centerAndNormalize(vector<ofPolyline>& lines);
@@ -60,5 +62,7 @@ protected:
     float zeroY;
     float maxX;
     float maxY;
+    
+    bool bUseTime;
     
 };

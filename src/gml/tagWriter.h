@@ -16,6 +16,9 @@ public:
     tagWriter();
     ~tagWriter();
     void setup();
+    void startCapture();
+    void addPoint(ofVec3f pt);
+    void addPoint(float x, float y, float z);
     void addPoint(float x, float y);
     void newStroke();
     void saveFile();
