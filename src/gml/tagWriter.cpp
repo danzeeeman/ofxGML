@@ -27,7 +27,7 @@ void tagWriter::setup(){
 }
 
 void tagWriter::reset(){
-    
+    setupGML();
 }
 
 //
@@ -38,7 +38,7 @@ void tagWriter::reset(){
 
 void tagWriter::setupGML(){
     
-    fileName = "session-"+ofToString(ofGetDay())+"-"+ofToString(ofGetHours())+"-"+ofToString(ofGetMinutes())+"-"+ofToString(ofGetSeconds())+".gml";
+    fileName = "captures/session-"+ofToString(ofGetDay())+"-"+ofToString(ofGetHours())+"-"+ofToString(ofGetMinutes())+"-"+ofToString(ofGetSeconds())+".gml";
     gml.loadFile(fileName);
     gml.addTag("gml");
     gml.pushTag("gml");
@@ -89,7 +89,6 @@ void tagWriter::setupGML(){
 
 void tagWriter::startCapture(){
     tagTimeStart = ofGetElapsedTimef();
-
 }
 
 void tagWriter::addPoint(ofVec3f pt){

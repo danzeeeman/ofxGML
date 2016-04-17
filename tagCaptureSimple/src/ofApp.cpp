@@ -225,6 +225,7 @@ void ofApp::keyPressed(int key){
             tagger.saveFile();
             tagger.reset();
             tagger.setBrush(pBrush->getBrushNumber(), colorNames[colorIndex].color, brushWidth);
+            tagger.startCapture();
             tag.clear();
             index = 0;
         }
@@ -414,14 +415,17 @@ void ofApp::mousePressed(int x, int y, int button){
 }
 
 void ofApp::loadFiles(){
-    
+
     gml.clear();
     newFiles.clear();
     reader.clear();
-    dir.listDir(ofToDataPath(""));
+    reader.useTime(true);
+    ofDirectory dir;
+    dir.close();
+    dir.listDir(ofToDataPath("captures"));
     dir.sort(); // in linux the file system doesn't return file lists ordered in alphabetical order
     //allocate the vector to have as many ofImages as files
-    
+    dir.allowExt(". gml");
     for(int i = 0; i < (int)dir.size(); i++){
         if(dir.getPath(i)!="../../../data/brushes"){
             string path = dir.getPath(i);

@@ -44,7 +44,7 @@ public:
     
     
     
-    ofDirectory dir;
+    
     vector<ofxXmlSettings> gml;
     deque<ofPolyline> files;
     vector<int> newFiles;
