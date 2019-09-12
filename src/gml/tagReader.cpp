@@ -108,7 +108,7 @@ void tagReader::clear(){
 
 void tagReader::getBoundingBox(vector<ofPolyline>& lines, ofVec3f& cornerMin, ofVec3f& cornerMax) {
     for(int j = 0; j < lines.size(); j++){
-        const vector<ofVec3f>& vertices = lines[j].getVertices();
+        auto vertices = lines[j].getVertices();
         if(vertices.size() > 0) {
             cornerMin = vertices[0];
             cornerMax = vertices[0];
@@ -133,7 +133,7 @@ void tagReader::centerAndNormalize(vector<ofPolyline>& lines, ofVec3f cornerMin,
     maxRange = MAX(maxRange, range.z);
     float scale = 1 / maxRange;
     for(int j = 0; j < lines.size(); j++){
-        vector<ofVec3f>& vertices = lines[j].getVertices();
+        auto vertices = lines[j].getVertices();
         for(int i = 0; i < vertices.size(); i++) {
             vertices[i] += translate;
             vertices[i] *= scale;
@@ -149,7 +149,7 @@ void tagReader::centerAndNormalize(vector<ofPolyline>& lines) {
 
 void tagReader::getBoundingBox(ofPolyline& line, ofVec3f& cornerMin, ofVec3f& cornerMax) {
     
-    const vector<ofVec3f>& vertices = line.getVertices();
+    auto vertices = line.getVertices();
     if(vertices.size() > 0) {
         cornerMin = vertices[0];
         cornerMax = vertices[0];
@@ -174,7 +174,7 @@ void tagReader::centerAndNormalize(ofPolyline& line, ofVec3f cornerMin, ofVec3f 
     maxRange = MAX(maxRange, range.z);
     float scale = 1 / maxRange;
     
-    vector<ofVec3f>& vertices = line.getVertices();
+    auto vertices = line.getVertices();
     for(int i = 0; i < vertices.size(); i++) {
         vertices[i] += translate;
         vertices[i] *= scale;
@@ -187,7 +187,7 @@ void tagReader::scale(vector<ofPolyline>& lines, float scaleX, float scaleY){
     }
 }
 void tagReader::scale(ofPolyline& line, float scaleX, float scaleY){
-    vector<ofVec3f>& vertices = line.getVertices();
+    auto vertices = line.getVertices();
     for(int i = 0; i < vertices.size(); i++) {
         vertices[i] *= ofVec3f(scaleX, scaleY);
     }
